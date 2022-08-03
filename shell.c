@@ -1,38 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include<sys/wait.h>
+#include <sys/wait.h>
 #include "main.h"
 
+/**
+ * main - entry to the program
+ * 
+ */
 void main()
 {
     char * input;
     size_t bufSize = 32;
     size_t characters;
-    char *argv[] = {"ls"};
+    char *argv[] = {"cmd"};
     char *envp[] ={NULL};
+
     while (1)
     {
-        printf("#cisfun$ ");
+        input = NULL;
+        write(STDOUT_FILENO,"#cisfun$ ",9);
         characters = getline(&input,&bufSize,stdin);
-        sanitizeInput(&input);
-        if(fork()!=0)
-        wait(NULL);
+        sanitizeInput(&input, characters);
+        if(fork()!=0){
+            wait(NULL);
+        }
         else{
-            if (execve(input,argv,envp) == -1)
+            if (execve(input,argv,envp) == -1){
                 perror("./shell");
+                exit(0);
+            } 
         }
     }
     
 }
 
-void sanitizeInput(char **input){
+
+/**
+ * sanitizeInput - Removes \n at the end of line and
+ *checks if we can read a new line
+ * @input - input string from stdin
+ * @characters - no of characters read or -1 if error
+ */
+void sanitizeInput(char **input, size_t characters){
     char *tempString = *input;
+    char *buf;
+
+    if(characters == -1)
+        exit(0);
+
     while (*tempString)
     {
-        //printf(":%d:\n",*tempString);
-        if (*tempString == 10)
+        if (*tempString == 10){
         *tempString = 0;
+        }
         ++tempString;
     }
     
