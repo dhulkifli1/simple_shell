@@ -6,12 +6,12 @@
 
 void main(int argc, char **argv)
 {
-    printf("My pid is %d count is: %d\n",getpid(),argc);
+    //printf("My pid is %d count is: %d\n",getpid(),argc);
+    printf("Starting program %d\n",getpid());
     if(fork()==0){
-        printf("I am the child :%d\n",getpid());
-    }else
-    {
-        //wait(NULL);
-        printf("I am the parent :%d\n",getpid());
-    }   
+        printf("mtotoz %d\n" , getpid());
+    }else{
+    printf("Matheee %d\n" , getpid());
+    }
+
 }
