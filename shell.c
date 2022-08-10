@@ -14,20 +14,20 @@ char *input;
 size_t bufSize = 32;
 size_t characters;
 char *argv[] = {"cmd"};
-char *envp[1];
+char *envp[] = {NULL};
 
 while (1)
 {
-input = NULL;
-write(STDOUT_FILENO, "#cisfun$ ", 9);
-characters = getline(&input, &bufSize, stdin);
-sanitizeInput(&input, characters);
-if (fork() != 0)
-{
-	wait(NULL);
-}
-else
-{
+	input = NULL;
+	write(STDOUT_FILENO, "#cisfun$ ", 9);
+	characters = getline(&input, &bufSize, stdin);
+	sanitizeInput(&input, characters);
+	if (fork() != 0)
+	{
+		wait(NULL);
+	}
+	else
+	{
 	if (execve(input, argv, envp) == -1)
 	{
 		perror("./shell");
@@ -50,15 +50,15 @@ void sanitizeInput(char **input, size_t characters)
 char *tempString = *input;
 
 if ((int)characters == -1)
-exit(0);
+	exit(0);
 
 while (*tempString)
 {
-if (*tempString == '\n')
-{
-	*tempString = 0;
-}
-++tempString;
+	if (*tempString == '\n')
+	{
+		*tempString = 0;
+	}
+	++tempString;
 }
 
 }
