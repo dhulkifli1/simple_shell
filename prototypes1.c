@@ -1,5 +1,13 @@
 #include "main.h"
 
+#define DELIMITER " \n\t\r\a\v"
+/**
+ * split_line - splits line to tokens
+ * @data: a pointer to the struct of data
+ *
+ * Return: (Success) a positive number
+ *         (Fail) a negative number
+ */
 int split_line(cmd_data *data)
 {
 	char *token;
@@ -30,9 +38,15 @@ int split_line(cmd_data *data)
 	data->args[i] = NULL;
 	return (0);
 }
+#undef DELIMITER
 
-
-
+/**
+ * free_data - frees data
+ * @data: the data structure
+ *
+ * Return: (Success) positive number
+ *         (Fail) negative number
+ */
 int free_data(cmd_data *data)
 {
 	free(data->line);
@@ -47,7 +61,14 @@ int free_data(cmd_data *data)
 }
 
 
-
+#define DELIMITER ":"
+/**
+ * parse_line - parses arguments to valid command
+ * @data: a pointer to the struct of data
+ *
+ * Return: (Success) a positive number
+ *         (Fail) a negative number
+ */
 int parse_line(cmd_data *data)
 {
 	if (is_path_form(data) > 0)
@@ -61,9 +82,16 @@ int parse_line(cmd_data *data)
 	is_short_form(data);
 	return (SUCCESS);
 }
+#undef DELIMITER
 
-
-
+/**
+ * _strcat - concatenates two string in a path form
+ * @first: the first given destination
+ * @second: the second given source
+ *
+ * Return: (Success) to the newly string
+ *         (Fail) if it failed
+ */
 char *_strcat(char *first, char *second)
 {
 	int len1, len2, i = 0, j = 0;
@@ -86,7 +114,14 @@ char *_strcat(char *first, char *second)
 }
 
 
-
+/**
+ * _strchr - locates a character in a given string
+ * @str: the given string
+ * @c: the given string
+ *
+ * Return: (Success) a pointer to the first occurence of c
+ *         (Fail) return a null pointer
+ */
 char *_strchr(char *str, char c)
 {
 	char *ptr;

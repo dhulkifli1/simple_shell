@@ -1,4 +1,13 @@
 #include "main.h"
+
+/**
+ * _strcmp - compare two strings
+ * @s1: the first given string
+ * @s2: the second given string
+ *
+ * Return: (Success) a positive number
+ *         (Fail) a negative number
+ */
 int _strcmp(char *s1, char *s2)
 {
 	int cmp = 0, i;
@@ -19,7 +28,13 @@ int _strcmp(char *s1, char *s2)
 }
 
 
-
+/**
+ * _getenv - gets the path
+ * @path_name: a pointer to the struct of data
+ *
+ * Return: (Success) a positive number
+ *         (Fail) a negative number
+ */
 char *_getenv(char *path_name)
 {
 	char **environ_cursor, *env_ptr, *name_ptr;
@@ -44,14 +59,25 @@ char *_getenv(char *path_name)
 }
 
 
-
+/**
+ * index_cmd - indexed command
+ * @data: a pointer to the data structure
+ *
+ * Return: void
+ */
 void index_cmd(cmd_data *data)
 {
 	data->index += 1;
 }
 
 
-
+/**
+ * write_history - prints error
+ * @data: the data structure pointer
+ *
+ * Return: (Success) a positive number
+ *         (Fail) a negative number
+ */
 int write_history(cmd_data *data)
 {
 	char *filename = "history";
@@ -76,7 +102,12 @@ int write_history(cmd_data *data)
 }
 
 
-
+/**
+ * _isalpha - check if the input is a letter
+ * @c: the character to be checked
+ *
+ * Return: 1 if letter, 0 otherwise
+ */
 int _isalpha(int c)
 {
 	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
