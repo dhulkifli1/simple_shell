@@ -6,15 +6,15 @@
 
 /**
  * main - entry to the program
- *
+ * Return: 0 success
  */
-void main(void)
+int main(void)
 {
 char *input;
 size_t bufSize = 32;
 size_t characters;
 char *argv[] = {"cmd"};
-char *envp[] = {};
+char *envp[1];
 
 while (1)
 {
@@ -48,9 +48,8 @@ else
 void sanitizeInput(char **input, size_t characters)
 {
 char *tempString = *input;
-char *buf;
 
-if (characters == -1)
+if ((int)characters == -1)
 exit(0);
 
 while (*tempString)
