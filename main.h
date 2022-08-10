@@ -28,6 +28,7 @@
  * @index: Index of the command run by shell
  * @env: the environnment
  * @error_msg: stores error messages
+ * @oldpwd: previous working dir
  *
  * Description: A structure contains all the variables needed to manage
  * the program, memory and accessability
@@ -40,6 +41,7 @@ typedef struct ds_data
 	unsigned long int index;
 	char *env;
 	char *error_msg;
+	char *oldpwd;
 } cmd_data;
 
 /**
@@ -84,7 +86,6 @@ void index_cmd(cmd_data *data);
 int write_history(cmd_data *data);
 int _isalpha(int c);
 
-/* -------------and these-----------------*/
 int abort_prg(cmd_data *data);
 int change_dir(cmd_data *data);
 int display_help(cmd_data *data);
