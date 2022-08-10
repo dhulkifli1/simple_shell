@@ -78,7 +78,7 @@ void index_cmd(cmd_data *data)
  * Return: (Success) a positive number
  *         (Fail) a negative number
  */
-int write_history(cmd_data *data)
+int write_history(cmd_data *data __attribute__((unused)))
 {
 	char *filename = "history";
 	char *line_of_history = "this is a line of history";
@@ -112,7 +112,7 @@ int _isalpha(int c)
 {
 	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 	{
-		return (SUCCESS);
+		return (1);
 	}
-	return (FAIL);
+	return (-1);
 }

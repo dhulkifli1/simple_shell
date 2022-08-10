@@ -14,13 +14,13 @@ int split_line(cmd_data *data)
 	size_t size = TOKENSIZE, new_size, i = 0;
 
 	if (_strcmp(data->line, "\n") == 0)
-		return (FAIL);
+		return (-1);
 	data->args = malloc(size * sizeof(char *));
 	if (data->args == NULL)
-		return (FAIL);
+		return (-1);
 	token = strtok(data->line, DELIMITER);
 	if (token == NULL)
-		return (FAIL);
+		return (-1);
 	while (token)
 	{
 		data->args[i++] =  token;
@@ -30,7 +30,7 @@ int split_line(cmd_data *data)
 			data->args = _realloc(data->args, size * sizeof(char *),
 					new_size * sizeof(char *));
 			if (data->args == NULL)
-				return (FAIL);
+				return (-1);
 			size = new_size;
 		}
 		token = strtok(NULL, DELIMITER);
@@ -72,15 +72,15 @@ int free_data(cmd_data *data)
 int parse_line(cmd_data *data)
 {
 	if (is_path_form(data) > 0)
-		return (SUCCESS);
+		return (1);
 	if (is_builtin(data) > 0)
 	{
 		if (handle_builtin(data) < 0)
-			return (FAIL);
-		return (NEUTRAL);
+			return (-1);
+		return (0);
 	}
 	is_short_form(data);
-	return (SUCCESS);
+	return (1);
 }
 #undef DELIMITER
 

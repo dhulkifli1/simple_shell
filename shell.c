@@ -26,21 +26,21 @@ while (1)
 		break;
 	}
 	if (split_line(&data) < 0)
-		{
-			free_data(&data);
-			continue;
-		}
-		pl = parse_line(&data);
-		if (pl == 0)
-		{
-			free_data(&data);
-			continue;
-		}
-		if (pl < 0)
-		{
-			print_error(&data);
-			continue;
-		}
+	{
+		free_data(&data);
+		continue;
+	}
+	pl = parse_line(&data);
+	if (pl == 0)
+	{
+		free_data(&data);
+		continue;
+	}
+	if (pl < 0)
+	{
+		print_error(&data);
+		continue;
+	}
 	if (process_cmd(&data) < 0)
 	{
 		print_error(&data);

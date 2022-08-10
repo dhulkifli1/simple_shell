@@ -85,6 +85,7 @@ char *_getenv(char *path_name);
 void index_cmd(cmd_data *data);
 int write_history(cmd_data *data);
 int _isalpha(int c);
+int _atoi(char *c);
 
 int abort_prg(cmd_data *data);
 int change_dir(cmd_data *data);

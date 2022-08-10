@@ -99,7 +99,7 @@ int display_help(cmd_data *data)
 			return (-1);
 		}
 	}
-	PRINT("\n");
+	_print("\n");
 	return (0);
 }
 /**
